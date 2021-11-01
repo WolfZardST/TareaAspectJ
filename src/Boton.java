@@ -1,27 +1,20 @@
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 public class Boton extends JFrame implements ActionListener {
 	private JButton boton1,boton2,boton3;
+	private JPanel fondo, botones;
 	
 	public Boton() {
-        setLayout(null);
-        boton1=new JButton("1");
-        boton1.setBounds(10,100,90,30);
-        add(boton1);
-        boton1.addActionListener(this);
-        boton2=new JButton("2");
-        boton2.setBounds(110,100,90,30);
-        add(boton2);
-        boton2.addActionListener(this);
-        boton3=new JButton("3");
-        boton3.setBounds(210,100,90,30);
-        add(boton3);
-        boton3.addActionListener(this);        	
+		
+		creacionVentana();
     }
 	
 	public void actionPerformed(ActionEvent e) {
@@ -35,4 +28,25 @@ public class Boton extends JFrame implements ActionListener {
             setTitle("boton 3");
         }        
     }
+	
+	private void creacionVentana() {
+		
+		fondo = new JPanel();
+		fondo.setLayout(new BorderLayout());
+		fondo.setBackground(Color.black);
+		
+		botones = new JPanel();
+		botones.setLayout(new GridLayout(1,3));
+		
+		boton1 = new JButton("Verde");
+		boton2 = new JButton("Azul");
+		boton3 = new JButton("Rojo");
+		
+		botones.add(boton1); botones.add(boton2); botones.add(boton3);
+		
+		fondo.add(botones, BorderLayout.SOUTH);
+		
+		add(fondo);
+		
+	}
 }

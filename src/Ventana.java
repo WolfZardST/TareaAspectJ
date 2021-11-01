@@ -7,10 +7,20 @@ import javax.swing.JLabel;
 
 public class Ventana {
 	public static void main(String[] args) {
+		
 		Boton boton=new Boton();
-        boton.setBounds(0,0,350,200);
-        boton.setVisible(true);
-        boton.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+		boton.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		boton.pack();
+		
+		boton.setSize(400, 300);
+		boton.setLocationRelativeTo(null);
+		
+		boton.setResizable(false);
+		
+		boton.setVisible(true);
+		boton.requestFocus();
         
     }
 
