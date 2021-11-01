@@ -56,16 +56,16 @@ public class Boton extends JFrame implements ActionListener {
 	
 	public void accionBoton1(Boton b) {
 		fondo.setBackground(Color.green);
-		setTitle("boton 1");
+		setTitle("Boton 1");
 	}
 	
 	public void accionBoton2(Boton b) {
 		fondo.setBackground(Color.blue);
-		setTitle("boton 2");
+		setTitle("Boton 2");
 	}
 	
 	public void accionBoton3(Boton b) {
 		fondo.setBackground(Color.red);
-		setTitle("boton 3");
+		setTitle("Boton 3");
 	}
 }
