@@ -15,17 +15,19 @@ public class Boton extends JFrame implements ActionListener {
 	public Boton() {
 		
 		creacionVentana();
+
     }
 	
 	public void actionPerformed(ActionEvent e) {
         if (e.getSource()==boton1) {
-            setTitle("boton 1");
+        	System.out.print("a");
+        	accionBoton1(this);
         }
         if (e.getSource()==boton2) {
-            setTitle("boton 2");
+        	accionBoton2(this);
         }
         if (e.getSource()==boton3) {
-            setTitle("boton 3");
+        	accionBoton3(this);
         }        
     }
 	
@@ -39,8 +41,11 @@ public class Boton extends JFrame implements ActionListener {
 		botones.setLayout(new GridLayout(1,3));
 		
 		boton1 = new JButton("Verde");
+		boton1.addActionListener(this);
 		boton2 = new JButton("Azul");
+		boton2.addActionListener(this);
 		boton3 = new JButton("Rojo");
+		boton3.addActionListener(this);
 		
 		botones.add(boton1); botones.add(boton2); botones.add(boton3);
 		
@@ -48,5 +53,17 @@ public class Boton extends JFrame implements ActionListener {
 		
 		add(fondo);
 		
+	}
+	
+	public void accionBoton1(Boton b) {
+		setTitle("boton 1");
+	}
+	
+	public void accionBoton2(Boton b) {
+		setTitle("boton 2");
+	}
+	
+	public void accionBoton3(Boton b) {
+		setTitle("boton 3");
 	}
 }
