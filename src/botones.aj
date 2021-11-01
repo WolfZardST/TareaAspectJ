@@ -5,36 +5,53 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.FloatControl;
 
+import javax.swing.JPanel;
+import javax.swing.JButton;
+import java.awt.Color;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 public aspect botones {
 	
-	pointcut pushButtons1(): 
-		call(void accionBoton1(Boton)); 
+	pointcut agregandoBotones (JButton button): call( * JPanel.add(..) ) && args(button);
 	
-	pointcut pushButtons2(): 
-		call(void accionBoton2(Boton)); 
-	
-	pointcut pushButtons3(): 
-		call(void accionBoton3(Boton)); 
-	
-	after() : pushButtons1() {
-		System.out.println("boton verde");
-		cargarSonido("sonidos\\boton1.wav");
-	} 
-	
-	after() : pushButtons2() {
-		System.out.println("boton azul");
-		cargarSonido("sonidos\\boton2.wav");
+	after(JButton button) returning: agregandoBotones(button){
+		
+		String color = button.getText();
+		
+		button.addActionListener(new ActionListener() {
+		    @Override
+		    public void actionPerformed(ActionEvent evt) {
+		    	
+		    	switch(color) {
+		    	
+		    	case "Verde": {
+		    		button.getParent().getParent().setBackground(Color.green);
+		    		cargarSonido("sonidos\\boton1.wav");
+		    	}
+		    		break;
+		    	case "Rojo": {
+		    		button.getParent().getParent().setBackground(Color.red);
+		    		cargarSonido("sonidos\\boton3.wav");
+		    	}
+	    			break;
+		    	case "Azul": {
+		    		button.getParent().getParent().setBackground(Color.blue);
+		    		cargarSonido("sonidos\\boton2.wav");
+		    	}
+	    		
+		    	}
+		    	
+		    	System.out.println(color);
+		    }
+		});
+		
 	}
 	
-	after() : pushButtons3() {
-		System.out.println("boton rojo");
-		cargarSonido("sonidos\\boton3.wav");
-	}
-	
-	
-	public void cargarSonido(String x) {
+	public void cargarSonido(String ruta) {
 		try {
-			AudioInputStream audio = AudioSystem.getAudioInputStream(new File(x).getAbsoluteFile());
+			AudioInputStream audio = AudioSystem.getAudioInputStream(new File(ruta).getAbsoluteFile());
             Clip sonido = AudioSystem.getClip();
             sonido.open(audio);
             
